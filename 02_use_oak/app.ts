@@ -20,11 +20,11 @@ let dogs: Array<Dog> = [
     },
 ];
 
-export const getDogs = ({ response }: { response: any }) => {
+const getDogs = ({ response }: { response: any }) => {
     response.body = dogs;
 }
 
-export const getDog = ({ params, response }: { params: { name: string }; response: any }) => {
+const getDog = ({ params, response }: { params: { name: string }; response: any }) => {
     const dog = dogs.filter((dog) => dog.name === params.name);
     if (dog.length) {
         response.status = 200;
@@ -37,7 +37,7 @@ export const getDog = ({ params, response }: { params: { name: string }; respons
     }
 }
 
-export const addDog = async ({ request, response }:{ request:any, response:any }) => {
+const addDog = async ({ request, response }:{ request:any, response:any }) => {
     const dog: Dog = await request.body().value;
     dogs.push(dog);
 
@@ -45,7 +45,7 @@ export const addDog = async ({ request, response }:{ request:any, response:any }
     response.body = { msg: "OK" };
 }
 
-export const updateDog = async ({ params, request, response }: { params: { name: string }; request: any; response: any }) => {
+const updateDog = async ({ params, request, response }: { params: { name: string }; request: any; response: any }) => {
     const temp = dogs.filter((existingDog) => existingDog.name === params.name);
     const { age }: { age: number } = await request.body().value;
 
@@ -60,7 +60,7 @@ export const updateDog = async ({ params, request, response }: { params: { name:
     response.body = { msg: `Cannot find dog ${params.name}` }
 }
 
-export const removeDog = ({ params, response }: { params: { name: string }; response: any }) => {
+const removeDog = ({ params, response }: { params: { name: string }; response: any }) => {
     const lengthBefore = dogs.length;
     dogs = dogs.filter((dog) => dog.name !== params.name);
 
