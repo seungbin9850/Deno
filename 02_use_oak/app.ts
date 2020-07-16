@@ -37,7 +37,7 @@ export const getDog = ({ params, response }: { params: { name: string }; respons
     }
 }
 
-export const addDog = async ({ request, response }:{ request:any, response:any }) => {
+export const addDog = async ({ request, response }:{ request: any, response: any }) => {
     const dog: Dog = await request.body().value;
     dogs.push(dog);
 
